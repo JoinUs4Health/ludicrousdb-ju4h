@@ -88,29 +88,76 @@ $wpdb->check_tcp_responsiveness = true;
 $wpdb->cache_group = 'ludicrousdb';
 
 /**
- * This is the most basic way to add a server to LudicrousDB using only the
- * required parameters: host, user, password, name.
- * This adds the DB defined in wp-config.php as a read/write server for
- * the 'global' dataset. (Every table is in 'global' by default.)
+ * Table prefix
  */
-$wpdb->add_database( array(
-	'host'     => DB_HOST,     // If port is other than 3306, use host:port.
-	'user'     => DB_USER,
-	'password' => DB_PASSWORD,
-	'name'     => DB_NAME,
-) );
+$table_prefix = 'wp_';
 
 /**
- * This adds the same server again, only this time it is configured as a slave.
- * The last three parameters are set to the defaults but are shown for clarity.
+ * Group of tables with non sensitive data
  */
-$wpdb->add_database( array(
-	'host'     => DB_HOST,     // If port is other than 3306, use host:port.
-	'user'     => DB_USER,
-	'password' => DB_PASSWORD,
-	'name'     => DB_NAME,
-	'write'    => 0,
-	'read'     => 1,
-	'dataset'  => 'global',
-	'timeout'  => 0.2,
-) );
+$wpdb->add_table('1', $table_prefix."bp_activity");
+$wpdb->add_table('1', $table_prefix."bp_activity_meta");
+$wpdb->add_table('1', $table_prefix."bp_groups");
+$wpdb->add_table('1', $table_prefix."bp_groups_groupmeta");
+$wpdb->add_table('1', $table_prefix."bp_groups_members");
+$wpdb->add_table('1', $table_prefix."bp_invitations");
+$wpdb->add_table('1', $table_prefix."bp_messages_messages");
+$wpdb->add_table('1', $table_prefix."bp_messages_meta");
+$wpdb->add_table('1', $table_prefix."bp_messages_notices");
+$wpdb->add_table('1', $table_prefix."bp_messages_recipients");
+$wpdb->add_table('1', $table_prefix."bp_notifications");
+$wpdb->add_table('1', $table_prefix."bp_notifications_meta");
+$wpdb->add_table('1', $table_prefix."bp_optouts");
+$wpdb->add_table('1', $table_prefix."bp_xprofile_data");
+$wpdb->add_table('1', $table_prefix."bp_xprofile_fields");
+$wpdb->add_table('1', $table_prefix."bp_xprofile_groups");
+$wpdb->add_table('1', $table_prefix."bp_xprofile_meta");
+$wpdb->add_table('1', $table_prefix."commentmeta");
+$wpdb->add_table('1', $table_prefix."comments");
+$wpdb->add_table('1', $table_prefix."links");
+$wpdb->add_table('1', $table_prefix."options");
+$wpdb->add_table('1', $table_prefix."postmeta");
+$wpdb->add_table('1', $table_prefix."posts");
+$wpdb->add_table('1', $table_prefix."signups");
+$wpdb->add_table('1', $table_prefix."task_breaker_comments");
+$wpdb->add_table('1', $table_prefix."task_breaker_tasks");
+$wpdb->add_table('1', $table_prefix."task_breaker_tasks_user_assignment");
+$wpdb->add_table('1', $table_prefix."task_breaker_task_meta");
+$wpdb->add_table('1', $table_prefix."termmeta");
+$wpdb->add_table('1', $table_prefix."terms");
+$wpdb->add_table('1', $table_prefix."term_relationships");
+$wpdb->add_table('1', $table_prefix."term_taxonomy");
+
+/**
+ * Group of tables with sensitive data
+ */
+$wpdb->add_table('2', $table_prefix."usermeta");
+$wpdb->add_table('2', $table_prefix."users");
+
+/**
+ * Add database with table dataset 1
+ */
+$wpdb->add_database(array(
+    'host'     => "xxx_1",     // If port is other than 3306, use host:port.
+    'user'     => "xxx_1",
+    'password' => "xxx_1",
+    'name'     => "xxx_1",
+    'dataset'  => "1",
+    'write'    => 1,
+    'read'     => 1,
+    'timeout'  => 1.0,
+));
+
+/**
+ * Add database with table dataset 2
+ */
+$wpdb->add_database(array(
+    'host'     => "xxx_2",     // If port is other than 3306, use host:port.
+    'user'     => "xxx_2",
+    'password' => "xxx_2",
+    'name'     => "xxx_2",
+    'dataset'  => "2",
+    'write'    => 1,
+    'read'     => 1,
+    'timeout'  => 1.0,
+));
