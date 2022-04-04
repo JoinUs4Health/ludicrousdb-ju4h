@@ -118,7 +118,6 @@ $wpdb->add_table('1', $table_prefix."links");
 $wpdb->add_table('1', $table_prefix."options");
 $wpdb->add_table('1', $table_prefix."postmeta");
 $wpdb->add_table('1', $table_prefix."posts");
-$wpdb->add_table('1', $table_prefix."signups");
 $wpdb->add_table('1', $table_prefix."task_breaker_comments");
 $wpdb->add_table('1', $table_prefix."task_breaker_tasks");
 $wpdb->add_table('1', $table_prefix."task_breaker_tasks_user_assignment");
@@ -131,6 +130,7 @@ $wpdb->add_table('1', $table_prefix."term_taxonomy");
 /**
  * Group of tables with sensitive data
  */
+$wpdb->add_table('2', $table_prefix."signups");
 $wpdb->add_table('2', $table_prefix."usermeta");
 $wpdb->add_table('2', $table_prefix."users");
 
